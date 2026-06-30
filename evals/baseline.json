@@ -1,0 +1,7 @@
+{
+  "perStandard": {
+    "STD-001": {"recall": 1.0, "fpRate": 0.0},
+    "STD-002": {"recall": 1.0, "fpRate": 0.0},
+    "STD-003": {"recall": 1.0, "fpRate": 0.0}
+  }
+}

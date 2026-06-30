@@ -1,0 +1,24 @@
+{
+  "name": "STD-001 AI code in a test file must not flag",
+  "intent": "should-not-flag",
+  "diff": [
+    "diff --git a/src/test/java/com/example/governance/service/OrderServiceTest.java b/src/test/java/com/example/governance/service/OrderServiceTest.java",
+    "@@ -10,4 +10,12 @@ class OrderServiceTest {",
+    "     void getOrder() {",
+    "         // TODO: implement when service logic is complete",
+    "     }",
+    "+",
+    "+    // AI-ASSISTED: Generated with GitHub Copilot.",
+    "+    @Test",
+    "+    void cancelOrderMarksCancelled() {",
+    "+        OrderService svc = new OrderService();",
+    "+        assertNull(svc.getOrder(1L));",
+    "+    }",
+    " }"
+  ],
+  "expect": [],
+  "expectNot": ["STD-001", "STD-002"],
+  "runs": 3,
+  "tolerance": 0,
+  "stubFindings": {"findings": []}
+}

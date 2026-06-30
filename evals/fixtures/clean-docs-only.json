@@ -1,0 +1,18 @@
+{
+  "name": "Docs-only change must produce no findings",
+  "intent": "should-not-flag",
+  "diff": [
+    "diff --git a/README.md b/README.md",
+    "@@ -10,3 +10,7 @@",
+    " The audit-log directory is written to by the pipeline at merge time.",
+    "+",
+    "+## Changelog",
+    "+",
+    "+- Clarified that the audit-log directory is written only by the pipeline."
+  ],
+  "expect": [],
+  "expectNot": ["STD-001", "STD-002", "STD-003"],
+  "runs": 3,
+  "tolerance": 0,
+  "stubFindings": {"findings": []}
+}

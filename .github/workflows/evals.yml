@@ -1,0 +1,60 @@
+# =============================================================================
+# evals.yml  (standards repo)
+#
+# Holds the POLICY itself to a regression test. On any PR that changes a standard,
+# the evaluator prompt, or the fixtures, this runs the evaluator regression corpus
+# against the candidate policy and fails if behavior regresses versus evals/baseline.json.
+#
+# This is the mirror of the app pipeline: app PRs are gated by the standards; standards
+# PRs are gated by the evals. A policy change can't be pinned and rolled out to consuming
+# repos until it passes its own regression suite.
+#
+# Requires a model API key. Set the `LLM_API_KEY` secret on this repo (or inherit an org
+# secret), and optionally an `EVALUATOR_MODEL` variable (defaults to the cheap demo model).
+# =============================================================================
+
+name: Standards Regression
+
+on:
+  pull_request:
+    paths:
+      - "standards/**"
+      - "evaluator/**"
+      - "evals/**"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pull-requests: write   # post the report on the PR
+
+jobs:
+  evals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (candidate policy)
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run the regression corpus against this repo's standards
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.LLM_API_KEY }}
+          EVALUATOR_MODEL: ${{ vars.EVALUATOR_MODEL || 'claude-haiku-4-5' }}
+        run: |
+          set -euo pipefail
+          pip install --quiet anthropic
+          # --standards-dir . => evaluate against the standards/prompt in THIS checkout
+          # (the PR's candidate). Non-zero exit on any regression fails the job.
+          python3 evals/run_evals.py --live --standards-dir . --out eval-report
+
+      - name: Post report
+        if: always() && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          [ -f eval-report.md ] && gh pr comment "$PR_NUMBER" --body-file eval-report.md || \
+            gh pr comment "$PR_NUMBER" --body "Standards regression run produced no report (the harness errored before scoring)."

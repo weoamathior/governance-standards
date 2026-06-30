@@ -1,0 +1,31 @@
+{
+  "name": "STD-001 service logic without provenance",
+  "intent": "should-flag",
+  "diff": [
+    "diff --git a/src/main/java/com/example/governance/service/OrderService.java b/src/main/java/com/example/governance/service/OrderService.java",
+    "@@ -18,4 +18,12 @@ public class OrderService {",
+    "     public List<Order> getOrdersForCustomer(String customerId) {",
+    "         return Collections.emptyList();",
+    "     }",
+    "+",
+    "+    public Order cancelOrder(Long id) {",
+    "+        Order order = getOrder(id);",
+    "+        if (order != null && !\"SHIPPED\".equals(order.getStatus())) {",
+    "+            order.setStatus(\"CANCELLED\");",
+    "+        }",
+    "+        return order;",
+    "+    }",
+    " }"
+  ],
+  "expect": [{"standardId": "STD-001", "severity": "required"}],
+  "expectNot": [],
+  "runs": 3,
+  "passThreshold": 3,
+  "tolerance": 0,
+  "stubFindings": {"findings": [
+    {"standardId": "STD-001", "severity": "required",
+     "description": "cancelOrder adds service logic with no AI-provenance comment.",
+     "file": "src/main/java/com/example/governance/service/OrderService.java",
+     "lineRange": {"start": 21, "end": 28}}
+  ]}
+}

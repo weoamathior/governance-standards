@@ -1,0 +1,29 @@
+{
+  "name": "STD-002 new service method with provenance, no test",
+  "intent": "should-flag",
+  "diff": [
+    "diff --git a/src/main/java/com/example/governance/service/OrderService.java b/src/main/java/com/example/governance/service/OrderService.java",
+    "@@ -18,4 +18,12 @@ public class OrderService {",
+    "     public List<Order> getOrdersForCustomer(String customerId) {",
+    "         return Collections.emptyList();",
+    "     }",
+    "+",
+    "+    // AI-ASSISTED: Generated with GitHub Copilot. Reviewed by [engineer].",
+    "+    // Filters a customer's orders down to a single status.",
+    "+    public List<Order> getOrdersByStatus(String customerId, String status) {",
+    "+        return Collections.emptyList();",
+    "+    }",
+    " }"
+  ],
+  "expect": [{"standardId": "STD-002", "severity": "advisory"}],
+  "expectNot": ["STD-001"],
+  "runs": 3,
+  "passThreshold": 2,
+  "tolerance": 0,
+  "stubFindings": {"findings": [
+    {"standardId": "STD-002", "severity": "advisory",
+     "description": "New service method getOrdersByStatus has no corresponding test.",
+     "file": "src/main/java/com/example/governance/service/OrderService.java",
+     "lineRange": {"start": 24, "end": 27}}
+  ]}
+}
