@@ -13,8 +13,12 @@
     "         </dependency>"
   ],
   "expect": [],
-  "expectNot": ["STD-003"],
-  "runs": 3,
+  "expectNot": [
+    "STD-003"
+  ],
+  "runs": 5,
   "tolerance": 0,
-  "stubFindings": {"findings": []}
+  "stubFindings": {
+    "findings": []
+  }
 }

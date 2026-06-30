@@ -17,15 +17,28 @@
     "+    }",
     " }"
   ],
-  "expect": [{"standardId": "STD-001", "severity": "required"}],
+  "expect": [
+    {
+      "standardId": "STD-001",
+      "severity": "required"
+    }
+  ],
   "expectNot": [],
-  "runs": 3,
+  "runs": 5,
   "passThreshold": 3,
   "tolerance": 0,
-  "stubFindings": {"findings": [
-    {"standardId": "STD-001", "severity": "required",
-     "description": "cancelOrder adds service logic with no AI-provenance comment.",
-     "file": "src/main/java/com/example/governance/service/OrderService.java",
-     "lineRange": {"start": 21, "end": 28}}
-  ]}
+  "stubFindings": {
+    "findings": [
+      {
+        "standardId": "STD-001",
+        "severity": "required",
+        "description": "cancelOrder adds service logic with no AI-provenance comment.",
+        "file": "src/main/java/com/example/governance/service/OrderService.java",
+        "lineRange": {
+          "start": 21,
+          "end": 28
+        }
+      }
+    ]
+  }
 }

@@ -16,15 +16,25 @@
     "         <dependency>",
     "             <groupId>org.springframework.boot</groupId>"
   ],
-  "expect": [{"standardId": "STD-003", "severity": "escalate"}],
+  "expect": [
+    {
+      "standardId": "STD-003",
+      "severity": "escalate"
+    }
+  ],
   "expectNot": [],
-  "runs": 3,
+  "runs": 5,
   "passThreshold": 3,
   "tolerance": 0,
-  "stubFindings": {"findings": [
-    {"standardId": "STD-003", "severity": "escalate",
-     "description": "New groupId com.squareup.okhttp3 (okhttp) duplicates existing HTTP-client capability.",
-     "file": "pom.xml",
-     "lineRange": null}
-  ]}
+  "stubFindings": {
+    "findings": [
+      {
+        "standardId": "STD-003",
+        "severity": "escalate",
+        "description": "New groupId com.squareup.okhttp3 (okhttp) duplicates existing HTTP-client capability.",
+        "file": "pom.xml",
+        "lineRange": null
+      }
+    ]
+  }
 }

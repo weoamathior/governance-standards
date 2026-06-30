@@ -11,8 +11,14 @@
     "+- Clarified that the audit-log directory is written only by the pipeline."
   ],
   "expect": [],
-  "expectNot": ["STD-001", "STD-002", "STD-003"],
-  "runs": 3,
+  "expectNot": [
+    "STD-001",
+    "STD-002",
+    "STD-003"
+  ],
+  "runs": 5,
   "tolerance": 0,
-  "stubFindings": {"findings": []}
+  "stubFindings": {
+    "findings": []
+  }
 }

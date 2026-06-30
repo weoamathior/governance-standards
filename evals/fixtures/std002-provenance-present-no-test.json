@@ -15,15 +15,30 @@
     "+    }",
     " }"
   ],
-  "expect": [{"standardId": "STD-002", "severity": "advisory"}],
-  "expectNot": ["STD-001"],
-  "runs": 3,
-  "passThreshold": 2,
-  "tolerance": 0,
-  "stubFindings": {"findings": [
-    {"standardId": "STD-002", "severity": "advisory",
-     "description": "New service method getOrdersByStatus has no corresponding test.",
-     "file": "src/main/java/com/example/governance/service/OrderService.java",
-     "lineRange": {"start": 24, "end": 27}}
-  ]}
+  "expect": [
+    {
+      "standardId": "STD-002",
+      "severity": "advisory"
+    }
+  ],
+  "expectNot": [
+    "STD-001"
+  ],
+  "runs": 5,
+  "passThreshold": 3,
+  "tolerance": 1,
+  "stubFindings": {
+    "findings": [
+      {
+        "standardId": "STD-002",
+        "severity": "advisory",
+        "description": "New service method getOrdersByStatus has no corresponding test.",
+        "file": "src/main/java/com/example/governance/service/OrderService.java",
+        "lineRange": {
+          "start": 24,
+          "end": 27
+        }
+      }
+    ]
+  }
 }

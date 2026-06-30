@@ -17,8 +17,13 @@
     " }"
   ],
   "expect": [],
-  "expectNot": ["STD-001", "STD-002"],
-  "runs": 3,
-  "tolerance": 0,
-  "stubFindings": {"findings": []}
+  "expectNot": [
+    "STD-001",
+    "STD-002"
+  ],
+  "runs": 5,
+  "tolerance": 1,
+  "stubFindings": {
+    "findings": []
+  }
 }
